@@ -17,7 +17,7 @@ Enemy.prototype.update = function(dt) {
         this.x += this.speed * dt;
     }
     // 超出右边界限，设置位置到左边
-    if (this.x > 505) {
+    if (this.x > ctx.canvas.width) {
         // 拉动到左边以外，使敌人出来的时间随机
         this.x = -(Game.getRandom(101, 303));
         // 重新设定速度
@@ -140,22 +140,23 @@ Player.prototype.resetLocation = function() {
 };
 // 玩家向左移动
 Player.prototype.moveLeft = function() {
-    this.x -= 101;
+    this.x -= Game.PLAYER_MOVE_STEPX;
 };
 
 // 玩家向右移动
 Player.prototype.moveRight = function() {
-    this.x += 101;
+    this.x += Game.PLAYER_MOVE_STEPX;
 };
 
 // 玩家向上移动
 Player.prototype.moveUp = function() {
-    this.y -= 83;
+    this.y -= Game.PLAYER_MOVE_STEPY;
+    console.log(Game.PLAYER_MOVE_STEPY);
 };
 
 // 玩家向下移动
 Player.prototype.moveDown = function() {
-    this.y += 83;
+    this.y += Game.PLAYER_MOVE_STEPY;
 };
 
 /**
@@ -250,6 +251,8 @@ var Game = {
     heartCount: 3, // 初始化红心数量3个
     winStatus: false, // 游戏获胜
     gameOverStatus: false, // 游戏失败
+    PLAYER_MOVE_STEPX: 101, // 玩家x坐标移动距离
+    PLAYER_MOVE_STEPY: 83, // 玩家y坐标移动距离
     // 设置游戏是否运行  setGameRun = false 敌人和玩家禁止移动
     setGameRun: true,
     btnSettingStatus: false, // 设置按钮点击状态
@@ -562,7 +565,7 @@ var Game = {
         this.setGameRun = false;
         this.btnSettingStatus = false;
         // 失败按钮从右上角开始移动
-        this.btnMoveX = 505;
+        this.btnMoveX = ctx.canvas.width;
         // 禁止产生buff
         buff.created = true;
     },
