@@ -18,12 +18,14 @@ var Engine = (function(global) {
     var doc = global.document,
         win = global.window,
         canvas = doc.createElement('canvas'),
+        container = doc.getElementById('container'),
         ctx = canvas.getContext('2d'),
         lastTime;
 
+    console.log(container);
     canvas.width = 505;
     canvas.height = 606;
-    doc.body.appendChild(canvas);
+    container.appendChild(canvas);
     canvas.id = 'canvas';
     /* 这个函数是整个游戏的主入口，负责适当的调用 update / render 函数 */
     function main() {

@@ -5,16 +5,112 @@
     <title>Effective JavaScript: Frogger</title>
     <!-- <link rel="stylesheet" href="css/style.css"> -->
     <style media="screen">
-    body {
-        text-align: center;
+    #container {
+      text-align: center;
+      z-index: 10;
     }
 
-    #canvas {
+    canvas {
       cursor: pointer;
+      margin: auto;
+    }
+    .gameDir {
+      position: absolute;
+      top: 30px;
+      left: 20px;
+      width: 500px;
+      text-align: center;
+      z-index: 0;
+    }
+
+    @media only screen and (max-width: 1520px) {
+      .gameDir {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+      }
+      .operate {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        width: 250px;
+      }
+      .setting {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        width: 250px;
+      }
+    }
+
+    @media only screen and (max-width: 1100px) {
+      .gameDir {
+        position: absolute;
+        top: 610px;
+        left: 10px;
+        right: 10px;
+        width: 505px;
+        margin: auto;
+        text-align: inherit;
+      }
+      .operate {
+        left: 0px;
+        padding-right: 2px;
+        border-right: 1px solid black;
+      }
+      .setting {
+        right: 0px;
+      }
     }
     </style>
 </head>
 <body>
+  <div class="gameDir">
+    <div class="operate">
+      <div>
+        <b>操作说明：</b><br>
+        <p>
+          通过键盘的上下左右按键来移动玩家的的位置
+        </p>
+      </div>
+      <div>
+        <b>游戏获胜：</b><br>
+        <p>
+          玩家顺利到达河边，游戏获胜，得分加10分
+        </p>
+      </div>
+      <div>
+        <b>游戏失败：</b><br>
+        <p>
+          玩家与敌人相撞，红心数量就会减一，如果红心数量为0，则游戏失败
+        </p>
+      </div>
+    </div>
+    <div class="setting">
+      <div>
+        <b>游戏的buff效果：</b><br>
+        <p>
+          红心随机出现在石头路上，玩家碰撞红心，红心数量加一
+        </p>
+      </div>
+      <div>
+        <b>游戏角色选择：</b><br>
+        <p>
+        一共有5个角色可以选择，选择角色后，游戏将重新开始
+        </p>
+      </div>
+      <div>
+        <b>最高分：</b><br>
+        <p>
+          点击该按钮，可以看到游戏目前的最高得分
+        </p>
+      </div>
+    </div>
+  </div>
+    <div id="container">
+    </div>
     <script async src="js/resources.js"></script>
     <script async src="js/engine.js"></script>
     <script async src="js/app.js"></script>
